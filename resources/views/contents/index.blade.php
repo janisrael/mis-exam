@@ -2,15 +2,13 @@
     <div class="float-right">
         @auth
         <a href="javascript:ajaxLoad('{{url('offices/create')}}')"
-           class="btn btn-primary">New</a>
+           class="btn btn-primary">Add New Office</a>
         @endauth
     </div>
     <h1 style="font-size: 2.2rem">OFFICE LIST</h1>
     <hr/>
     <div class="row">
-  <!--       <div class="col-sm-4 form-group">
-            {!! Form::select('gender',['-1'=>'Select Gender','Male'=>'Male','Female'=>'Female'],request()->session()->get('gender'),['class'=>'form-control','onChange'=>'ajaxLoad("'.url("laravel-crud-search-sort-ajax").'?gender="+this.value)']) !!}
-        </div> -->
+  
         <div class="col-sm-5 form-group">
             <div class="input-group">
                 <input class="form-control" id="search"

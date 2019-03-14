@@ -27,7 +27,7 @@
 @endsection
 @section('content')
     <div id="content">
-        @include('crud_3.index')
+        @include('contents.index')
     </div>
     <div class="loading">
         <i class="fa fa-refresh fa-spin fa-2x fa-fw"></i><br/>

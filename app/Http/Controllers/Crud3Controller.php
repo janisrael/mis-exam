@@ -10,15 +10,14 @@ class Crud3Controller extends Controller
     public function index(Request $request)
     {
         $request->session()->put('search', $request->has('search') ? $request->get('search') : ($request->session()->has('search') ? $request->session()->get('search') : ''));
-        // $request->session()->put('description', $request->has('description') ? $request->get('description') : ($request->session()->has('description') ? $request->session()->get('description') : -1));
+        
         $request->session()->put('field', $request->has('field') ? $request->get('field') : ($request->session()->has('field') ? $request->session()->get('field') : 'office'));
 
-       $request->session()->put('field', $request->has('field') ? $request->get('field') : ($request->session()->has('field') ? $request->session()->get('field') : 'description'));
+        $request->session()->put('field', $request->has('field') ? $request->get('field') : ($request->session()->has('field') ? $request->session()->get('field') : 'description'));
 
         $request->session()->put('sort', $request->has('sort') ? $request->get('sort') : ($request->session()->has('sort') ? $request->session()->get('sort') : 'asc'));
         $offices = new Office();
-        // if ($request->session()->get('office') != -1)
-        //     $offices = $offices->where('office', $request->session()->get('office'));
+        
         $offices = $offices->where('office', 'like', '%' . $request->session()->get('search') . '%')
             ->orWhere('description', 'like', '%' . $request->session()->get('search') . '%')
             ->orWhere('local', 'like', '%' . $request->session()->get('search') . '%')
@@ -27,15 +26,15 @@ class Crud3Controller extends Controller
             ->paginate(5);
 
         if ($request->ajax())
-            return view('crud_3.index', compact('offices'));
+            return view('contents.index', compact('offices'));
         else
-            return view('crud_3.ajax', compact('offices'));
+            return view('contents.ajax', compact('offices'));
     }
 
     public function create(Request $request)
     {
         if ($request->isMethod('get'))
-            return view('crud_3.form');
+            return view('contents.form');
         else {
             $rules = [
                 'office' => '',
@@ -69,7 +68,7 @@ class Crud3Controller extends Controller
     public function update(Request $request, $id)
     {
         if ($request->isMethod('get'))
-            return view('crud_3.form', ['office' => Office::find($id)]);
+            return view('contents.form', ['office' => Office::find($id)]);
         else {
             $rules = [
                 'office' => 'required',
